@@ -18,7 +18,7 @@ if (!is_null($events['events'])) {
 
 			$rate = get_value();
 			
-			if($text=="..."){
+			if($text=="bx"){
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
