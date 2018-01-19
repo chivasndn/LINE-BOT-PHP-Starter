@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
 echo "OK";
 function get_value(){
 		
-		$return_txt = "Cryptocurrency: bx.in.th\n----------------------------------\n";
+		$return_txt = "Cryptocurrency:\nbx.in.th\n--------------------------------\n";
 		
 		date_default_timezone_set("Asia/Bangkok");
 		
