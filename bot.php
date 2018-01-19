@@ -66,7 +66,7 @@ function XRP(){
 		// print_r($val);
 		
 		if($val->secondary_currency==$crypto_currency&&$val->primary_currency=="THB"){
-			//echo $pairing_id = $val->pairing_id;
+			$pairing_id = $val->pairing_id;
 			//echo "\n------------------------------------\n";
 			break;
 		}
