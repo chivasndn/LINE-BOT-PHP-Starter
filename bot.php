@@ -16,10 +16,12 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
+			$rate = XRP();
+			
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $text
+				'text' => $rate
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -45,3 +47,43 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
+function XRP(){
+	
+	date_default_timezone_set("Asia/Bangkok");
+	
+	$crypto_currency = "XRP";
+	
+	$max = 1;
+	$i = 0;
+	$pairing_id = 0;
+	
+	$rate =0;
+	
+	$json = file_get_contents('https://bx.in.th/api/');
+	$obj = json_decode($json);
+	
+	foreach($obj as $val){
+		// print_r($val);
+		
+		if($val->secondary_currency==$crypto_currency&&$val->primary_currency=="THB"){
+			echo $pairing_id = $val->pairing_id;
+			echo "\n------------------------------------\n";
+			break;
+		}
+		
+	}
+	
+	while($i<$max){
+		$json = file_get_contents('https://bx.in.th/api/trade/?pairing='.$pairing_id);
+		$obj = json_decode($json);
+		
+		if(number_format($obj->trades[0]->rate, 2)!=0){
+			$rate = number_format($obj->trades[0]->rate, 2);
+			echo date("H:i:s")."\t".$rate."\n";
+			//sleep(3);
+			$i++;
+		}
+	}
+	
+	return rate;
+}
