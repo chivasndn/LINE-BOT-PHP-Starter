@@ -49,11 +49,11 @@ if (!is_null($events['events'])) {
 echo "OK";
 function get_value(){
 		
-		$return_txt = "";
+		$return_txt = "Cryptocurrency\n--------------\n";
 		
 		date_default_timezone_set("Asia/Bangkok");
 		
-		$crypto_currency_list = array("XRP","EVX");
+		$crypto_currency_list = array("XRP","EVX","BTC");
 		
 		$count = count($crypto_currency_list);
 		
