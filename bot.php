@@ -16,7 +16,7 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
-			$rate = XRP();
+			$rate = get_value();
 			
 			// Build message to reply back
 			$messages = [
@@ -47,11 +47,17 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
-function XRP(){
+function get_value(){
+	
+	$return_txt = "";
 	
 	date_default_timezone_set("Asia/Bangkok");
 	
-	$crypto_currency = "XRP";
+	$crypto_currency_list = array("XRP","EVX")
+	
+	$count = count($crypto_currency_list);
+	
+	for($k=0;$k<$count;$k++){
 	
 	$max = 1;
 	$i = 0;
@@ -65,7 +71,7 @@ function XRP(){
 	foreach($obj as $val){
 		// print_r($val);
 		
-		if($val->secondary_currency==$crypto_currency&&$val->primary_currency=="THB"){
+		if($val->secondary_currency==$crypto_currency_list[$k]&&$val->primary_currency=="THB"){
 			$pairing_id = $val->pairing_id;
 			//echo "\n------------------------------------\n";
 			break;
@@ -79,11 +85,14 @@ function XRP(){
 		
 		if(number_format($obj->trades[0]->rate, 2)!=0){
 			$rate = number_format($obj->trades[0]->rate, 2);
+			$return_txt = $return_txt . $crypto_currency_list[$k]." : ".$rate."\n";
 			//echo date("H:i:s")."\t".$rate."\n";
 			//sleep(3);
 			$i++;
 		}
 	}
 	
-	return $rate;
+}
+	
+	return $return_txt;
 }
