@@ -18,11 +18,20 @@ if (!is_null($events['events'])) {
 
 			$rate = get_value();
 			
+			if($text=="..."){
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $rate
 			];
+			}
+			else{
+				// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
+			}
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
@@ -49,7 +58,7 @@ if (!is_null($events['events'])) {
 echo "OK";
 function get_value(){
 		
-		$return_txt = "Cryptocurrency\n--------------\n";
+		$return_txt = "Cryptocurrency: bx.in.th\n----------------------------------\n";
 		
 		date_default_timezone_set("Asia/Bangkok");
 		
