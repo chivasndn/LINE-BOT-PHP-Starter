@@ -21,7 +21,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => "$rate"
+				'text' => $rate
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -66,8 +66,8 @@ function XRP(){
 		// print_r($val);
 		
 		if($val->secondary_currency==$crypto_currency&&$val->primary_currency=="THB"){
-			echo $pairing_id = $val->pairing_id;
-			echo "\n------------------------------------\n";
+			//echo $pairing_id = $val->pairing_id;
+			//echo "\n------------------------------------\n";
 			break;
 		}
 		
@@ -79,11 +79,11 @@ function XRP(){
 		
 		if(number_format($obj->trades[0]->rate, 2)!=0){
 			$rate = number_format($obj->trades[0]->rate, 2);
-			echo date("H:i:s")."\t".$rate."\n";
+			//echo date("H:i:s")."\t".$rate."\n";
 			//sleep(3);
 			$i++;
 		}
 	}
 	
-	return rate;
+	return $rate;
 }
